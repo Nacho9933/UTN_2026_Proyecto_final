@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router"; 
 import { useChat } from "../../Context/ChatContext";
-import './Sidebar.css';
+import './SideBar.css';
 
 const Sidebar = () => {
     const { contacts, setUserName } = useChat(); 
