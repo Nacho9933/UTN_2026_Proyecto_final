@@ -1,0 +1,139 @@
+
+.chat-header {
+    height: 60px;
+    background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chat-header-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.back-btn {
+    text-decoration: none;
+    font-size: 24px;
+    color: var(--text-muted);
+    margin-right: 15px;
+    display: none;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-status {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: none;
+    color: #ea0038;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px;
+}
+
+
+.message-area {
+    flex: 1;
+    padding: 20px 5%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.msg-bubble {
+    max-width: 65%;
+    padding: 6px 7px 8px 9px;
+    border-radius: 7px;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--text-main);
+    position: relative;
+    box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.msg-bubble.me {
+    background-color: var(--wa-msg-out);
+    align-self: flex-end;
+    border-top-right-radius: 0;
+}
+
+.msg-bubble.them {
+    background-color: var(--wa-msg-in);
+    align-self: flex-start;
+    border-top-left-radius: 0;
+}
+
+
+.msg-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+
+.msg-time {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.msg-status {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.msg-status.read {
+    color: #53bdeb;
+}
+
+
+.chat-input-form {
+    background-color: #f0f2f5;
+    padding: 10px 16px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.chat-input-form input {
+    flex: 1;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 15px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+.send-btn {
+    background-color: var(--wa-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s;
+}
+
+.send-btn:active {
+    transform: scale(0.95);
+}
