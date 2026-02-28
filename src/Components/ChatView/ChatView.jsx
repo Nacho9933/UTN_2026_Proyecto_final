@@ -1,112 +1,116 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import { useSearchParams, Link, useNavigate } from "react-router";
-import { useChat } from "../../Context/ChatContext";
-import "./ChatView.css";
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useSearchParams } from 'react-router'; 
+import { useChat } from '../../Context/ChatContext';
+import { 
+    MdSearch, 
+    MdMoreVert, 
+    MdInsertEmoticon, 
+    MdAttachFile, 
+    MdSend, 
+    MdMic 
+} from "react-icons/md";
+import './ChatView.css';
 
 const ChatView = () => {
-  const [searchParams] = useSearchParams();
-  const contactId = searchParams.get("contactId") || "";
-  const navigate = useNavigate();
-  const {
-    contacts,
-    messages,
-    sendMessage,
-    userName,
-    isTyping,
-    openStatus,
-  } = useChat();
+    const [searchParams] = useSearchParams();
+    const contactId = searchParams.get('contactId');
+    
+    const { contacts, messages, sendMessage, isTyping } = useChat();
+    const [inputText, setInputText] = useState('');
+    const messagesEndRef = useRef(null);
 
-  const [text, setText] = useState("");
-  const scrollRef = useRef(null);
+    const currentContact = contacts.find(c => c.PhoneNumber === contactId);
+    
+    const currentMessages = useMemo(() => messages[contactId] || [], [messages, contactId]);
 
-  const contact = useMemo(
-    () => contacts.find((c) => c.PhoneNumber === contactId),
-    [contacts, contactId],
-  );
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [currentMessages, isTyping]);
 
-  const chatMessages = useMemo(
-    () => messages[contactId] || [],
-    [messages, contactId],
-  );
+    const handleSend = (e) => {
+        e.preventDefault();
+        if (inputText.trim() !== '') {
+            sendMessage(contactId, inputText);
+            setInputText('');
+        }
+    };
 
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatMessages]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!text.trim()) return;
-    sendMessage(contactId, text);
-    setText("");
-  };
-
-  if (!contact)
-    return <div className="error-message">Contacto no encontrado</div>;
-
-  return (
-    <div className="conversation-view">
-      <header className="chat-header">
-        <Link to="/" className="back-btn">
-          ←
-        </Link>
-        <div className="chat-header-content">
-          <img
-            src={contact.avatar}
-            alt={`Avatar de ${contact.name}`}
-            className="avatar"
-            onClick={() => openStatus(contact.statusVideo)}
-            style={{ cursor: "pointer" }}
-          />
-          <div className="header-info">
-            <h3 className="contact-name">{contact.name}</h3>
-            <span className="contact-status">
-              {isTyping === contactId ? "Escribiendo..." : "En línea"}
-            </span>
-          </div>
-        </div>
-        {}
-        <button onClick={() => navigate("/")} className="logout-btn">
-          Cerrar Chat
-        </button>
-      </header>
-
-      <main className="message-area">
-        {chatMessages.map((m) => (
-          <div
-            key={m.id}
-            className={`msg-bubble ${m.author === userName ? "me" : "them"}`}
-          >
-            <p>{m.text}</p>
-            <div className="msg-footer">
-              <span className="msg-time">{m.time}</span>
-              {}
-              {m.author === userName && (
-                <div
-                  className={`msg-status ${m.status === "read" ? "read" : ""}`}
-                >
-                  ✓✓
+    if (!currentContact) {
+        return (
+            <div className="chat-empty-state">
+                <div className="empty-state-content">
+                    <h2>WhatsApp para Windows</h2>
+                    <p>Envía y recibe mensajes sin mantener tu teléfono conectado.</p>
                 </div>
-              )}
             </div>
-          </div>
-        ))}
-        <div ref={scrollRef} />
-      </main>
+        );
+    }
 
-      <form onSubmit={handleSubmit} className="chat-input-form">
-        <input
-          type="text"
-          placeholder="Escribe un mensaje..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          required
-        />
-        <button type="submit" className="send-btn">
-          Enviar
-        </button>
-      </form>
-    </div>
-  );
+    return (
+        <div className="chat-view-container">
+            {}
+            <header className="chat-header">
+                <div className="chat-header-info">
+                    <img src={currentContact.avatar} alt="avatar" className="chat-header-avatar" />
+                    <div className="chat-header-text">
+                        <h3>{currentContact.name}</h3>
+                        {}
+                        {isTyping === contactId && <span className="typing-status">escribiendo...</span>}
+                    </div>
+                </div>
+                <div className="chat-header-actions">
+                    <button className="icon-btn"><MdSearch /></button>
+                    <button className="icon-btn"><MdMoreVert /></button>
+                </div>
+            </header>
+
+            {}
+            <div className="chat-body">
+                {currentMessages.map((msg) => {
+                    const isMine = msg.status === 'sent';
+                    return (
+                        <div key={msg.id} className={`message-row ${isMine ? 'mine' : 'theirs'}`}>
+                            <div className={`message-bubble ${isMine ? 'sent' : 'received'}`}>
+                                <span className="message-text">{msg.text}</span>
+                                <span className="message-time">{msg.time}</span>
+                            </div>
+                        </div>
+                    );
+                })}
+                
+                {}
+                {isTyping === contactId && (
+                    <div className="message-row theirs">
+                        <div className="message-bubble received typing-indicator">
+                            <span className="dot"></span><span className="dot"></span><span className="dot"></span>
+                        </div>
+                    </div>
+                )}
+                {}
+                <div ref={messagesEndRef} />
+            </div>
+
+            {}
+            <footer className="chat-footer">
+                <button className="icon-btn"><MdInsertEmoticon /></button>
+                <button className="icon-btn attach-btn"><MdAttachFile /></button>
+                
+                <form className="chat-input-form" onSubmit={handleSend}>
+                    <input 
+                        type="text" 
+                        placeholder="Escribe un mensaje" 
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                    />
+                </form>
+                
+                {}
+                <button className="icon-btn" onClick={handleSend}>
+                    {inputText.trim() ? <MdSend /> : <MdMic />}
+                </button>
+            </footer>
+        </div>
+    );
 };
 
 export default ChatView;

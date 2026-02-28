@@ -22,7 +22,8 @@ export const ChatProvider = ({ children }) => {
     const [activeStatus, setActiveStatus] = useState(null);
     const [isTyping, setIsTyping] = useState(null);
 
-    const contacts = contactsData;
+    // 1. CAMBIO CLAVE: Convertimos los contactos en un estado de React
+    const [contacts, setContacts] = useState(contactsData);
 
     useEffect(() => {
         localStorage.setItem('whatsapp_user', userName);
@@ -40,6 +41,17 @@ export const ChatProvider = ({ children }) => {
         localStorage.removeItem('whatsapp_messages');
         setUserName('Usuario');
         navigate("/"); 
+    };
+
+    // 2. NUEVA FUNCIÓN: Busca al contacto y le pone la propiedad unread en 0
+    const markAsRead = (contactId) => {
+        setContacts(prevContacts => 
+            prevContacts.map(contact => 
+                contact.PhoneNumber === contactId 
+                    ? { ...contact, unread: 0 } 
+                    : contact
+            )
+        );
     };
 
     const sendMessage = (contactId, text) => {
@@ -91,7 +103,8 @@ export const ChatProvider = ({ children }) => {
     return (
         <ChatContext.Provider value={{
             contacts, messages, sendMessage, userName, setUserName,
-            isTyping, logout, openStatus, closeStatus, activeStatus
+            isTyping, logout, openStatus, closeStatus, activeStatus,
+            markAsRead // 3. EXPORTAMOS LA FUNCIÓN: La agregamos al contexto
         }}>
             {children}
         </ChatContext.Provider>

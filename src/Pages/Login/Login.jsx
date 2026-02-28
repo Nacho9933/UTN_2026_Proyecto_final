@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router'; 
 import { useChat } from '../../Context/ChatContext';
+import { MdOutlineWhatsapp } from "react-icons/md"; 
 import './Login.css';
 
 const Login = ({ onLogin }) => {
@@ -25,32 +26,45 @@ const Login = ({ onLogin }) => {
     };
 
     return (
-        <div className="login-container">
-            <form className="login-form" onSubmit={handleLogin}>
-                {}
-                <h2>Iniciar Sesión</h2>
+        <div className="login-wrapper">
+            {}
+            <div className="login-header-band"></div>
+            
+            {}
+            <div className="login-card">
+                <div className="login-card-header">
+                    <MdOutlineWhatsapp className="login-icon" />
+                    <h2>WhatsApp Web</h2>
+                </div>
                 
-                {}
-                <input 
-                    type="text" 
-                    placeholder="Usuario" 
-                    value={user} 
-                    onChange={(e) => setUser(e.target.value)} 
-                    aria-label="Nombre de usuario"
-                    required 
-                />
-                
-                <input 
-                    type="password" 
-                    placeholder="Contraseña" 
-                    value={pass} 
-                    onChange={(e) => setPass(e.target.value)} 
-                    aria-label="Contraseña"
-                    required 
-                />
-                
-                <button type="submit">Entrar</button>
-            </form>
+                <form className="login-form" onSubmit={handleLogin}>
+                    <div className="input-group">
+                        <label>Nombre de usuario</label>
+                        <input 
+                            type="text" 
+                            placeholder="Ej: Lucas" 
+                            value={user} 
+                            onChange={(e) => setUser(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    
+                    <div className="input-group">
+                        <label>Contraseña</label>
+                        <input 
+                            type="password" 
+                            placeholder="••••••••" 
+                            value={pass} 
+                            onChange={(e) => setPass(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    
+                    <button type="submit" className="login-button">
+                        Iniciar Sesión
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

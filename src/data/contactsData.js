@@ -22,5 +22,12 @@ export const contactsData = [
         name: "Grupo de Trabajo",
         avatar: "https://ui-avatars.com/api/?name=Grupo+Trabajo&background=0D8ABC&color=fff",
         lastMsg: "Marcos: Reunión confirmada para el viernes."
-    }
+    },
+    {
+    PhoneNumber: '123456789',
+    name: 'Lucas',
+    avatar: 'https://rutadelaimagen.com',
+    lastMsg: '¿A qué hora nos vemos?',
+    unread: 3 // <-- ¡Agregá esto para probar!
+}
 ];

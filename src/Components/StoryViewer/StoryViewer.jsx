@@ -44,4 +44,4 @@ const StoryViewer = () => {
     );
 };
 
-export default StoryViewer;
+export default StoryViewer; //darle prioridad a esto

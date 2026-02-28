@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { MdLockOutline } from "react-icons/md";
+import './SplashScreen.css';
 
-const DURATION_MS = 7000; 
+const DURATION_MS = 3000;
 const INTERVAL_MS = 100;
 const INCREMENT = 100 / (DURATION_MS / INTERVAL_MS);
 
@@ -29,30 +31,25 @@ const SplashScreen = ({ onFinished }) => {
     }, [progress, onFinished]);
 
     return (
-        <div className="loading-screen">
-            <div className="loading-content">
+        <div className="splash-screen">
+            <div className="splash-content">
                 {}
-                <div className="big-logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA Logo" />
+                <div className="splash-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" />
                 </div>
                 
-                <div className="loading-bar-container">
-                    <p>Instalando WhatsApp ...</p>
-                    
-                    {}
+                {}
+                <div className="splash-progress-container">
                     <div 
-                        className="progress-bar" 
-                        role="progressbar" 
-                        aria-valuenow={Math.round(progress)} 
-                        aria-valuemin="0" 
-                        aria-valuemax="100"
-                    >
-                        <div 
-                            className="progress-fill" 
-                            style={{ width: `${progress}%` }}
-                        ></div>
-                    </div>
-                    <span className="percentage">{Math.round(progress)}%</span>
+                        className="splash-progress-fill" 
+                        style={{ width: `${progress}%` }}
+                    ></div>
+                </div>
+                
+                {}
+                <h1 className="splash-title">WhatsApp</h1>
+                <div className="splash-encryption">
+                    <MdLockOutline /> End-to-end encrypted
                 </div>
             </div>
         </div>
