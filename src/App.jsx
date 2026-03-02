@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router'; 
+import { Routes, Route, Navigate, useSearchParams } from 'react-router'; 
 import SplashScreen from './Components/SplashScreen/SplashScreen';
 import StoryViewer from './Components/StoryViewer/StoryViewer';
 import Sidebar from './Components/SideBar/SideBar';
@@ -10,8 +10,11 @@ import { useChat } from './Context/ChatContext';
 import './App.css';
 
 const MainLayout = () => {
+  const [searchParams] = useSearchParams();
+  const hasSelectedChat = Boolean(searchParams.get('contactId'));
+
   return (
-    <div style={{ display: 'flex', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+    <div className={`main-layout ${hasSelectedChat ? 'show-chat' : 'show-sidebar'}`}>
       <Sidebar />
       <ChatView />
     </div>

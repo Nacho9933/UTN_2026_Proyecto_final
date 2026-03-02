@@ -2,12 +2,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100dvh;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 16px;
+    overflow-y: auto;
 
     background-color: #d1d7db;
     z-index: 1000;
@@ -106,4 +108,78 @@
 .login-button:hover {
     background-color: #008f6f;
     box-shadow: 0 4px 8px rgba(0, 168, 132, 0.3);
+}
+
+@media (max-width: 767px) {
+    .login-header-band {
+        height: 160px;
+    }
+
+    .login-card {
+        padding: 32px 20px;
+        gap: 22px;
+        border-radius: 8px;
+    }
+
+    .login-card-header h2 {
+        font-size: 22px;
+    }
+
+    .login-form {
+        gap: 18px;
+    }
+}
+
+@media (max-width: 360px), (max-height: 640px) {
+    .login-wrapper {
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .login-header-band {
+        height: 120px;
+    }
+
+    .login-card {
+        margin: 6px 0;
+        padding: 20px 14px;
+        gap: 14px;
+        border-radius: 6px;
+    }
+
+    .login-card-header {
+        gap: 8px;
+        margin-bottom: 4px;
+    }
+
+    .login-icon {
+        font-size: 28px;
+    }
+
+    .login-card-header h2 {
+        font-size: 18px;
+    }
+
+    .login-form {
+        gap: 12px;
+    }
+
+    .input-group {
+        gap: 6px;
+    }
+
+    .input-group label {
+        font-size: 13px;
+    }
+
+    .input-group input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .login-button {
+        margin-top: 4px;
+        padding: 11px;
+        font-size: 14px;
+    }
 }

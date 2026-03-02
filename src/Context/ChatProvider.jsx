@@ -9,7 +9,7 @@ export const ChatProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const [userName, setUserName] = useState(() => {
-        return localStorage.getItem('whatsapp_user') || 'Usuario';
+        return localStorage.getItem('whatsapp_user') || '';
     });
 
     const [messages, setMessages] = useState(() => {

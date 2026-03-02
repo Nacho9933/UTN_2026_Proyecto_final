@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100%;
     background-color: #f0f2f5;
 }
 
@@ -23,7 +23,7 @@
 
 
 .splash-progress-container {
-    width: 320px;
+    width: min(320px, calc(100vw - 32px));
     height: 3px;
     background-color: #e9edef;
     border-radius: 3px;
@@ -52,4 +52,20 @@
     gap: 5px;
     color: #8696a0;
     font-size: 13px;
+}
+
+@media (max-width: 360px), (max-height: 640px) {
+    .splash-logo img {
+        width: 58px;
+        height: 58px;
+        margin-bottom: 24px;
+    }
+
+    .splash-progress-container {
+        margin-bottom: 20px;
+    }
+
+    .splash-title {
+        font-size: 18px;
+    }
 }

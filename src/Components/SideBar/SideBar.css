@@ -1,6 +1,6 @@
 .sidebar-wrapper {
   flex: 30%;
-  min-width: 360px;
+  min-width: 280px;
   max-width: 450px;
   height: 100%; 
   display: flex; 
@@ -142,6 +142,7 @@
   border: none;
   background: transparent;
   width: 100%;
+  min-width: 0;
   outline: none;
   font-size: 14px;
   color: var(--text-main);
@@ -272,4 +273,221 @@
 
 .avatar-container .avatar {
     margin-right: 0; 
+}
+
+@media (max-width: 1023px) {
+  .sidebar-wrapper {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    border-right: none;
+  }
+
+  .panel-title {
+    font-size: 20px;
+  }
+
+  .contact-name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar-wrapper {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    border-right: none;
+  }
+
+  .nav-rail {
+    width: 56px;
+    padding: 12px 0;
+  }
+
+  .rail-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .rail-icon svg,
+  .rail-profile svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .sidebar-header {
+    padding: 10px 12px;
+  }
+
+  .panel-title {
+    font-size: 18px;
+  }
+
+  .sidebar-logout-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .search-container {
+    padding: 8px;
+  }
+
+  .search-box {
+    height: 36px;
+    padding: 0 10px;
+  }
+
+  .search-icon {
+    margin-right: 10px;
+  }
+
+  .contact-link {
+    padding: 0 10px;
+    height: 68px;
+  }
+
+  .avatar,
+  .avatar-container {
+    margin-right: 10px;
+  }
+
+  .contact-info {
+    padding-right: 8px;
+  }
+
+  .contact-name {
+    font-size: 15px;
+  }
+
+  .msg-time,
+  .last-message {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-rail {
+    width: 48px;
+    padding: 10px 0;
+  }
+
+  .nav-rail-top,
+  .nav-rail-bottom {
+    gap: 10px;
+  }
+
+  .rail-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .rail-icon svg,
+  .rail-profile svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sidebar-header {
+    height: 56px;
+    padding: 8px;
+  }
+
+  .panel-title {
+    font-size: 16px;
+  }
+
+  .sidebar-logout-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .search-container {
+    padding: 6px;
+  }
+
+  .search-box {
+    height: 34px;
+    padding: 0 8px;
+  }
+
+  .search-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .search-input {
+    font-size: 13px;
+  }
+
+  .search-input::placeholder {
+    font-size: 12px;
+  }
+
+  .contact-link {
+    padding: 0 8px;
+    height: 64px;
+  }
+
+  .avatar,
+  .avatar-container {
+    margin-right: 8px;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .contact-name {
+    font-size: 14px;
+  }
+
+  .msg-time,
+  .last-message {
+    font-size: 11px;
+  }
+
+  .unread-badge {
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-height: 640px) {
+  .sidebar-header {
+    height: 52px;
+    padding: 6px 8px;
+  }
+
+  .search-container {
+    padding: 6px;
+  }
+
+  .search-box {
+    height: 32px;
+  }
+
+  .contact-link {
+    height: 60px;
+    padding: 0 8px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-name {
+    font-size: 14px;
+  }
+
+  .last-message,
+  .msg-time {
+    font-size: 11px;
+  }
 }
