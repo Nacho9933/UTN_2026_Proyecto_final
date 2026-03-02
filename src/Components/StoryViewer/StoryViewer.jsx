@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useChat } from '../../Context/ChatContext';
+import { MdClose } from 'react-icons/md';
+import './StoryViewer.css';
 
 const StoryViewer = () => {
     const { activeStatus, closeStatus } = useChat();
@@ -22,21 +24,20 @@ const StoryViewer = () => {
 
     return (
         <div className="status-overlay" onClick={closeStatus}>
-            {}
+            
             <button 
-                className="close-status" 
+                className="close-status-btn" 
                 onClick={closeStatus}
                 aria-label="Cerrar estado"
             >
-                ×
+                <MdClose />
             </button>
             
             <div className="status-video-container" onClick={e => e.stopPropagation()}>
-                {}
                 <video 
+                    className="status-video"
                     src={activeStatus} 
                     autoPlay 
-                    muted 
                     onEnded={closeStatus} 
                 />
             </div>
@@ -44,4 +45,4 @@ const StoryViewer = () => {
     );
 };
 
-export default StoryViewer; //darle prioridad a esto
+export default StoryViewer;

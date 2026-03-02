@@ -1,0 +1,51 @@
+.status-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(11, 20, 26, 0.95);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-status-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: transparent;
+    border: none;
+    color: #e9edef;
+    font-size: 36px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s;
+    z-index: 10000;
+}
+
+.close-status-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.status-video-container {
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    max-width: 50vh;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.status-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

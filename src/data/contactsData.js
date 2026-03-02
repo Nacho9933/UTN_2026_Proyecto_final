@@ -1,33 +1,39 @@
 export const contactsData = [
-    {
-        PhoneNumber: "1123456789",
-        name: "Sofía Martínez",
-        avatar: "https://i.pravatar.cc/150?img=5",
-        lastMsg: "¡Dale! Nos vemos mañana a las 10."
+    { 
+        PhoneNumber: "1", 
+        name: "Lucas", 
+        avatar: "https://i.pravatar.cc/150?img=11", 
+        lastMsg: "¡Dale, nos vemos!", 
+        time: "10:42", 
+        unread: 2,
+        statusVideo: "https://www.w3schools.com/html/mov_bbb.mp4"
     },
-    {
-        PhoneNumber: "1198765432",
-        name: "Lucas Gómez",
-        avatar: "https://i.pravatar.cc/150?img=11",
-        lastMsg: "¿Pudiste revisar el archivo?"
+    { 
+        PhoneNumber: "2", 
+        name: "María", 
+        avatar: "https://i.pravatar.cc/150?img=5", 
+        lastMsg: "Jajaja, total", 
+        time: "09:15", 
+        unread: 0,
+        statusVideo: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
     },
-    {
-        PhoneNumber: "1155554444",
-        name: "Camila Ruiz",
-        avatar: "https://i.pravatar.cc/150?img=9",
-        lastMsg: "Jajaja, ¡qué locura!"
+    { 
+        PhoneNumber: "3", 
+        name: "Carlos", 
+        avatar: "https://i.pravatar.cc/150?img=13", 
+        lastMsg: "Pasame el repo cuando puedas", 
+        time: "Ayer", 
+        unread: 1,
+        statusVideo: "https://www.w3schools.com/html/mov_bbb.mp4"
     },
-    {
-        PhoneNumber: "1177778888",
-        name: "Grupo de Trabajo",
-        avatar: "https://ui-avatars.com/api/?name=Grupo+Trabajo&background=0D8ABC&color=fff",
-        lastMsg: "Marcos: Reunión confirmada para el viernes."
-    },
-    {
-    PhoneNumber: '123456789',
-    name: 'Lucas',
-    avatar: 'https://rutadelaimagen.com',
-    lastMsg: '¿A qué hora nos vemos?',
-    unread: 3 // <-- ¡Agregá esto para probar!
-}
+    { PhoneNumber: "4", name: "Ana", avatar: "https://i.pravatar.cc/150?img=9", lastMsg: "Ok 👍", time: "Ayer", unread: 0 },
+    { PhoneNumber: "5", name: "Fede", avatar: "https://i.pravatar.cc/150?img=15", lastMsg: "¿A qué hora nos juntamos?", time: "Lunes", unread: 0 },
+    { PhoneNumber: "6", name: "Sofi", avatar: "https://i.pravatar.cc/150?img=20", lastMsg: "Mañana lo reviso sin falta", time: "Lunes", unread: 5 },
+    { PhoneNumber: "7", name: "Diego", avatar: "https://i.pravatar.cc/150?img=33", lastMsg: "Genial, abrazo", time: "Domingo", unread: 0 },
+    { PhoneNumber: "8", name: "Laura", avatar: "https://i.pravatar.cc/150?img=42", lastMsg: "¡Muchas gracias!", time: "Sábado", unread: 0 },
+    { PhoneNumber: "9", name: "Martín", avatar: "https://i.pravatar.cc/150?img=53", lastMsg: "No hay problema, tranqui", time: "Sábado", unread: 0 },
+    { PhoneNumber: "10", name: "Julieta", avatar: "https://i.pravatar.cc/150?img=47", lastMsg: "Che, ¿miraste el mail que te mandé?", time: "Viernes", unread: 1 },
+    { PhoneNumber: "11", name: "Pablo", avatar: "https://i.pravatar.cc/150?img=59", lastMsg: "Estamos hablando", time: "Viernes", unread: 0 },
+    { PhoneNumber: "12", name: "Micaela", avatar: "https://i.pravatar.cc/150?img=32", lastMsg: "Me parece bien.", time: "Jueves", unread: 0 },
+    { PhoneNumber: "13", name: "Grupo React ⚛️", avatar: "https://i.pravatar.cc/150?img=24", lastMsg: "¿Alguien pudo hacer el deploy?", time: "Jueves", unread: 12 },
 ];

@@ -1,14 +1,9 @@
 
 :root {
     --wa-primary: #00a884;
-    --wa-primary-dark: #008069;
     --wa-bg-app: #d1d7db;
     --wa-bg-sidebar: #ffffff;
     --wa-bg-chat: #efeae2;
-
-    --wa-msg-in: #ffffff;
-
-    --wa-msg-out: #d9fdd3;
 
     --text-main: #111b21;
 
@@ -72,29 +67,6 @@ body {
 }
 
 
-.sidebar {
-    flex: 30%;
-    min-width: 300px;
-    max-width: 415px;
-    border-right: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    background-color: var(--wa-bg-sidebar);
-}
-
-
-.conversation-view {
-    flex: 70%;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--wa-bg-chat);
-
-    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
-    background-repeat: repeat;
-    background-size: contain;
-}
-
-
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -114,4 +86,125 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(17, 27, 33, 0.3); 
+}
+
+body.dark-mode {
+    background-color: #111b21;
+}
+
+body.dark-mode .whatsapp-clone-app {
+    background-color: #0b141a;
+}
+
+@media (min-width: 1024px) {
+    body.dark-mode::before {
+        background-color: #202c33;
+    }
+}
+
+body.dark-mode .sidebar-wrapper,
+body.dark-mode .sidebar-panel,
+body.dark-mode .contact-list {
+  background-color: #111b21;
+  border-color: #202c33;
+}
+body.dark-mode .nav-rail {
+  background-color: #202c33;
+  border-color: #202c33;
+}
+body.dark-mode .sidebar-header,
+body.dark-mode .search-container {
+  background-color: #111b21;
+  border-color: #202c33;
+}
+body.dark-mode .panel-title,
+body.dark-mode .contact-name { color: #e9edef; }
+body.dark-mode .msg-time,
+body.dark-mode .last-message { color: #8696a0; }
+body.dark-mode .search-box { background-color: #202c33; }
+body.dark-mode .search-input { color: #e9edef; }
+body.dark-mode .search-input::placeholder { color: #8696a0; }
+body.dark-mode .rail-icon svg,
+body.dark-mode .search-icon { color: #aebac1; }
+body.dark-mode .rail-icon:hover,
+body.dark-mode .rail-icon.active { background-color: #374045; }
+body.dark-mode .rail-icon.active svg { color: #e9edef; }
+body.dark-mode .rail-profile { background-color: #374045; }
+body.dark-mode .rail-profile svg { color: #d1d7db; }
+body.dark-mode .contact-link:hover { background-color: #202c33; }
+body.dark-mode .contact-info { border-bottom-color: #202c33; }
+body.dark-mode .contact-list::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.16); }
+body.dark-mode .contact-list::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.25); }
+
+
+body.dark-mode .chat-empty-state {
+    background-color: #222e35;
+    border-bottom: 6px solid #00a884;
+}
+body.dark-mode .empty-state-content h2,
+body.dark-mode .empty-state-content p { color: #e9edef; }
+
+body.dark-mode .chat-view-container { background-color: #0b141a; }
+body.dark-mode .chat-header,
+body.dark-mode .chat-footer {
+    background-color: #202c33;
+    border-color: #202c33;
+}
+body.dark-mode .chat-header-text h3 { color: #e9edef; }
+body.dark-mode .chat-header-actions .icon-btn,
+body.dark-mode .chat-footer .icon-btn { color: #aebac1; }
+body.dark-mode .chat-header-actions .icon-btn:hover,
+body.dark-mode .chat-footer .icon-btn:hover { background-color: #374045; }
+
+body.dark-mode .chat-body {
+    background-color: #0b141a;
+    background-blend-mode: multiply;
+}
+body.dark-mode .message-bubble.received {
+    background-color: #202c33;
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .message-bubble.sent {
+    background-color: #005c4b;
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .message-text { color: #e9edef; }
+body.dark-mode .message-time { color: #8696a0; }
+
+body.dark-mode .chat-input-form input {
+    background-color: #2a3942;
+    color: #e9edef;
+}
+body.dark-mode .chat-input-form input::placeholder { color: #8696a0; }
+
+body.dark-mode .tick { color: #8696a0; }
+body.dark-mode .tick.read { color: #53bdeb; }
+
+body.dark-mode .contact-info-panel,
+body.dark-mode .info-panel-header,
+body.dark-mode .info-panel-body {
+    background-color: #111b21;
+    border-color: #202c33;
+}
+
+body.dark-mode .info-profile-section,
+body.dark-mode .info-details-section {
+    background-color: #111b21;
+    box-shadow: none;
+    border-bottom: 10px solid #0b141a;
+}
+
+body.dark-mode .info-panel-header h2,
+body.dark-mode .info-large-name,
+body.dark-mode .info-about {
+    color: #e9edef;
+}
+
+body.dark-mode .info-large-phone,
+body.dark-mode .info-label {
+    color: #8696a0;
+}
+
+body.dark-mode .avatar-container.has-status {
+    border-color: #00a884;
 }

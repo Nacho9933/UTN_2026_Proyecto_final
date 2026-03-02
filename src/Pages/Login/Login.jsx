@@ -4,7 +4,7 @@ import { useChat } from '../../Context/ChatContext';
 import { MdOutlineWhatsapp } from "react-icons/md"; 
 import './Login.css';
 
-const Login = ({ onLogin }) => {
+const Login = () => {
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
     
@@ -16,11 +16,7 @@ const Login = ({ onLogin }) => {
         
         if (user.trim() !== '' && pass.trim() !== '') {
             setUserName(user);
-            
-            if (onLogin) {
-                onLogin();
-            }
-            
+
             navigate('/');
         }
     };

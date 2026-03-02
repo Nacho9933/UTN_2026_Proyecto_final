@@ -14,15 +14,22 @@ export const ChatProvider = ({ children }) => {
 
     const [messages, setMessages] = useState(() => {
         const saved = localStorage.getItem('whatsapp_messages');
-        if (saved) return JSON.parse(saved);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                if (parsed && typeof parsed === 'object') {
+                    return parsed;
+                }
+            } catch {
+                localStorage.removeItem('whatsapp_messages');
+            }
+        }
         const initialUser = localStorage.getItem('whatsapp_user') || 'Usuario';
         return initialMessages(initialUser);
     });
 
     const [activeStatus, setActiveStatus] = useState(null);
     const [isTyping, setIsTyping] = useState(null);
-
-    // 1. CAMBIO CLAVE: Convertimos los contactos en un estado de React
     const [contacts, setContacts] = useState(contactsData);
 
     useEffect(() => {
@@ -39,15 +46,14 @@ export const ChatProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('whatsapp_user');
         localStorage.removeItem('whatsapp_messages');
-        setUserName('Usuario');
-        navigate("/"); 
+        setUserName('');
+        navigate("/login"); 
     };
 
-    // 2. NUEVA FUNCIÓN: Busca al contacto y le pone la propiedad unread en 0
     const markAsRead = (contactId) => {
         setContacts(prevContacts => 
             prevContacts.map(contact => 
-                contact.PhoneNumber === contactId 
+                String(contact.PhoneNumber) === String(contactId)
                     ? { ...contact, unread: 0 } 
                     : contact
             )
@@ -55,48 +61,79 @@ export const ChatProvider = ({ children }) => {
     };
 
     const sendMessage = (contactId, text) => {
+        if (!contactId || !text?.trim()) return;
+
+        const normalizedContactId = String(contactId);
         const hora = formatTime(new Date());
 
+        const generateSafeId = () => Date.now().toString() + Math.random().toString(36).substring(2, 9);
+
         const newMessage = {
-            id: crypto.randomUUID(),
+            id: generateSafeId(),
             text,
             author: userName,
             time: hora,
             status: 'sent'
         };
 
-        setMessages(prev => ({
-            ...prev,
-            [contactId]: [...(prev[contactId] || []), newMessage]
-        }));
+        setMessages(prev => {
+            const chatActual = prev[normalizedContactId] || [];
+            return {
+                ...prev,
+                [normalizedContactId]: [...chatActual, newMessage]
+            };
+        });
 
-        setIsTyping(contactId);
+        setContacts(prevContacts => {
+            const index = prevContacts.findIndex(c => String(c.PhoneNumber) === normalizedContactId);
+            
+            if (index > -1) {
+                const copiaContactos = [...prevContacts];
+                const [contactoMovido] = copiaContactos.splice(index, 1);
+                return [contactoMovido, ...copiaContactos];
+            }
+            return prevContacts;
+        });
+
+        setIsTyping(normalizedContactId);
 
         setTimeout(() => {
-            const contact = contacts.find(c => c.PhoneNumber === contactId);
+            let botText = "No entendí muy bien, ¿me repetís?";
 
-            if (contact) {
+            try {
+                botText = getBotResponse(userName, text);
+            } catch (error) {
+                console.error("Error en la respuesta del bot:", error);
+            }
+
+            setMessages(prev => {
+                const chatActual = prev[normalizedContactId] || [];
+
+                const chatActualizado = chatActual.map(msg => {
+                    if (msg.author === userName && msg.status === 'sent') {
+                        return { ...msg, status: 'read' };
+                    }
+                    return msg;
+                });
+
+                const contact = contactsData.find(c => String(c.PhoneNumber) === normalizedContactId);
+                const contactName = contact ? contact.name : "Contacto";
+
                 const reply = {
-                    id: crypto.randomUUID(),
-                    text: getBotResponse(userName, text),
-                    author: contact.name,
+                    id: generateSafeId(),
+                    text: botText,
+                    author: contactName,
                     time: formatTime(new Date()),
                     status: 'read'
                 };
 
-                setMessages(prev => {
-                    const chatActual = prev[contactId] || [];
-                    const chatActualizado = chatActual.map(m =>
-                        m.author === userName ? { ...m, status: 'read' } : m
-                    );
+                return {
+                    ...prev,
+                    [normalizedContactId]: [...chatActualizado, reply]
+                };
+            });
 
-                    return {
-                        ...prev,
-                        [contactId]: [...chatActualizado, reply]
-                    };
-                });
-                setIsTyping(null);
-            }
+            setIsTyping(null);
         }, 2000);
     };
 
@@ -104,7 +141,7 @@ export const ChatProvider = ({ children }) => {
         <ChatContext.Provider value={{
             contacts, messages, sendMessage, userName, setUserName,
             isTyping, logout, openStatus, closeStatus, activeStatus,
-            markAsRead // 3. EXPORTAMOS LA FUNCIÓN: La agregamos al contexto
+            markAsRead
         }}>
             {children}
         </ChatContext.Provider>

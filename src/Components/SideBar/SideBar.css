@@ -250,3 +250,26 @@
   margin-left: 10px;
   flex-shrink: 0;
 }
+.avatar-container {
+    position: relative;
+    margin-right: 15px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-container.has-status {
+  border: 2px solid #00a884;
+    cursor: pointer;
+}
+
+.avatar-container.has-status:hover {
+    opacity: 0.8;
+}
+
+.avatar-container .avatar {
+    margin-right: 0; 
+}
